@@ -3,6 +3,10 @@ declare module '*.vue' {
   export default Vue
 }
 
+declare module 'lodash'
+
+declare module 'vuex-map-fields'
+
 // 定义样式
 declare module '*.less' {
   const less: any
