@@ -16,6 +16,7 @@ module.exports = {
       }
     ],
     indentation: [2],
-    'max-empty-lines': 2
+    'max-empty-lines': 2,
+    'string-quotes': 'double'
   }
 }
