@@ -48,10 +48,10 @@ export default class ErrorPage extends Vue {
     const desc = this.desc || errorType.desc
     
     return <div class="exception">
-      <div class="imgBlock">
+      <div class="img-block">
         <div
           style={`backgroundImage:url(${imgUrl})`}
-          class="imgEle"
+          class="img-ele"
         />
       </div>
       <div class="content">

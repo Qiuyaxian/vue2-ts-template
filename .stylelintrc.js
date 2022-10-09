@@ -1,5 +1,5 @@
 module.exports = {
-  extends: 'stylelint-config-standard',
+  extends: ['stylelint-config-standard', 'stylelint-config-css-modules'],
   customSyntax: 'postcss-html',
   overrides: [
     {
@@ -17,6 +17,13 @@ module.exports = {
     ],
     indentation: [2],
     'max-empty-lines': 2,
-    'string-quotes': 'double'
+    'string-quotes': 'single',
+    'selector-class-pattern': [
+      // 命名规范 -
+      '^([a-z][a-z0-9]*)(-[a-z0-9]+)*$',
+      {
+        message: 'Expected class selector to be kebab-case'
+      }
+    ]
   }
 }
