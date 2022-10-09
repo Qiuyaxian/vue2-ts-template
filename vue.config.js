@@ -1,5 +1,9 @@
 const path = require('path')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+//
+const proxyConfig = require('./proxy.config')
+//
+const mockConfig = require('./mock.config')
 // 获取环境变量
 const confEnv = process.env.VUE_APP_ENV
 // 打包环境
@@ -11,9 +15,33 @@ const isServer = serveEnv === 'server'
 const useSourceMap = !(isProd && isServer)
 // 是否开启代码片段分析
 const useAnalyzer = process.env.use_analyzer
+// 使用mock
+const useMock = process.env.use_mock
 
 function resolve(dir) {
   return path.join(__dirname, dir)
+}
+
+const devServer = {
+  // 是否自动打开
+  open: false,
+  //
+  host: 'localhost',
+  // 端口
+  port: 3001, // 8080,
+  // 是否开启 https
+  https: false,
+  // 是否开启热启动
+  hotOnly: false,
+  //
+  disableHostCheck: true
+}
+
+if (useMock) {
+  devServer.proxy = proxyConfig
+  devServer.before = function (app) {
+    mockConfig(app)
+  }
 }
 
 module.exports = {
@@ -21,32 +49,7 @@ module.exports = {
   outputDir: `dist/${confEnv}`,
   assetsDir: 'static',
   // webpack-dev-server 相关配置
-  devServer: {
-    // 是否自动打开
-    open: false,
-    host: 'localhost',
-    // 端口
-    port: 3001, // 8080,
-    // 是否开启 https
-    https: false,
-    // 是否开启热启动
-    hotOnly: false
-    // 设置跨域
-    // proxy: {
-    //   // 设置代理
-    //   "/api": {
-    //     target: "http://localhost:3000/",
-    //     changeOrigin: true,
-    //     ws: true,
-    //     pathRewrite: {
-    //       "^/api": ""
-    //     }
-    //   }
-    // },
-    // before: app => {
-
-    // }
-  },
+  devServer: devServer,
   chainWebpack: (config) => {
     config.resolve.symlinks(false)
     config.devtool('source-map')
@@ -121,8 +124,8 @@ module.exports = {
   // 在多核机器下会默认开启
   // use thread-loader for babel & TS in production build
   // enabled by default if the machine has more than 1 cores
-  // parallel: require('os').cpus().length > 1,
-  parallel: false,
+  parallel: require('os').cpus().length > 1,
+  // parallel: false,
   // 生产环境是否生成 sourceMap 文件
   productionSourceMap: false,
   // 第三方插件配置
