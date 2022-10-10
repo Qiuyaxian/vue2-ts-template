@@ -21,7 +21,7 @@ const mainRoute: RouteConfig = {
   path: '/',
   name: 'Main',
   meta: {
-    noAuthRequired: true
+    noAuthRequired: false
   },
   redirect: () => '/home',
   component: _import('Main')

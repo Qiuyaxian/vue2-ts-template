@@ -9,12 +9,4 @@ const store = new Vuex.Store({
   modules
 })
 
-// 自动执行每个模块的 init 方法
-for (const moduleName of Object.keys(modules)) {
-  const moduleItem = modules[moduleName]
-  if (moduleItem && moduleItem.actions && moduleItem.actions.init) {
-    store.dispatch(`${moduleName}/init`)
-  }
-}
-
 export default store

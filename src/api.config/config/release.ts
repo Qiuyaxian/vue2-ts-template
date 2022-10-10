@@ -1,3 +1,3 @@
 export default {
-  main: 'http://main.server.release'
+  main: 'http://localhost:3001/mock'
 }

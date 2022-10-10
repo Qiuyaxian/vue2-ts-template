@@ -1,21 +1,12 @@
 import request from '../utils/request'
 import apiConfig from '../api.config'
 
-// const silentRequestService = request({
-//   ...apiConfig.main,
-//   silent: true,
-//   apiKey: 'request-apikey',
-//   transformRequestConfig(config) {
-//     return config
-//   },
-//   transformResponse(data) {
-//     return data
-//   }
-// })
-
 const silentRequestService = request({
   ...apiConfig.main,
-  silent: true
+  silent: true,
+  transformResponse: (response: any) => {
+    return response.data
+  }
 })
 
 export function getCurrentUser() {

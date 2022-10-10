@@ -1,6 +1,6 @@
 export default {
   main: {
-    url: 'https://prod.main.server',
+    url: 'http://localhost:3001/mock',
     apiKey: 'main-apikey'
   }
 }

@@ -2,11 +2,9 @@ import { Component, Vue } from 'vue-property-decorator'
 import ErrorPage from './ErrorPage'
 
 @Component({
-  // components: { ErrorPage },
-  /* eslint-diabeld */
   beforeRouteEnter(to: any, from: any, next: Function) {
     next(async (vm: any) => {
-      if (vm.$store.getters['auth/loggedIn']) {
+      if (vm.$store.getters['user/loggedIn']) {
         return vm.$router.replace({ name: 'Home' })
       } else {
         vm.retry()
@@ -17,9 +15,9 @@ import ErrorPage from './ErrorPage'
 export default class ErrorPage401 extends Vue {
   async retry() {
     try {
-      await this.$store.dispatch('auth/init')
-    } catch (e) {}
-    if (this.$store.getters['auth/loggedIn']) {
+      await this.$store.dispatch('user/getCurrentUser')
+    } catch (e) { }
+    if (this.$store.getters['user/loggedIn']) {
       this.$router.replace({ name: 'Home' })
     }
   }
@@ -27,7 +25,7 @@ export default class ErrorPage401 extends Vue {
   protected render() {
     return (
       <ErrorPage title="401" type={401} desc="请先登录">
-        <el-button slot="actions" class="button" on-click={this.retry}>
+        <el-button slot="actions" on-click={this.retry}>
           刷新
         </el-button>
       </ErrorPage>

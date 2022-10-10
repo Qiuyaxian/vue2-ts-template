@@ -5,11 +5,10 @@ interface ApiConfig {
   [k: string]: any;
 }
 
-const confEnv: string | null | undefined = process.env.REACT_APP_ENV
-
+const confEnv: string | null | undefined = process.env.VUE_APP_ENV
 function _loadApiEnvConfig(env: string | null | undefined): ApiConfig | null {
-  const apiEnvConfigs = require.context('./config', true, /\.js$/)
-  const envRegExp = new RegExp('/' + env + '.js', 'i')
+  const apiEnvConfigs = require.context('./config', true, /\.(js|ts)$/)
+  const envRegExp = new RegExp('/' + env + '.ts', 'i')
   const apiEnvConfigKeys = apiEnvConfigs.keys()
   const apiConfigKey: string | undefined = apiEnvConfigKeys.find((fileName) => {
     return envRegExp.test(fileName)
@@ -20,7 +19,7 @@ function _loadApiEnvConfig(env: string | null | undefined): ApiConfig | null {
 
 const globalApiConfig = _loadApiEnvConfig(confEnv)
 if (!globalApiConfig) {
-  throw Error(`${confEnv} api 配置项不存在，请在 src/api/config/ 内配置。`)
+  throw Error(`${confEnv} api 配置项不存在，请在 src/api.config/ 内配置。`)
 }
 
 /**

@@ -4,7 +4,7 @@ const LazyLoadingRoutes = function (callback: Function | null) {
     {
       path: '/user',
       name: 'User',
-      meta: { noAuthRequired: true },
+      meta: { noAuthRequired: false },
       component: 'User'
     }
   ])

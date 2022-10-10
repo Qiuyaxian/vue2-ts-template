@@ -6,18 +6,13 @@ export const _import = (filePath: string) => () => import(`@/views/${filePath}`)
 
 export async function routeCheckAuth(to: any, from: any, next: Function) {
   // 在没有会话接口用于验证登录状态的项目，使用是否获取到登录用户判断是否已登录。
-  if (store.getters['auth/loggedIn']) {
+  if (store.getters['user/loggedIn']) {
     return next()
   } else {
-    // return next({ name: '403' })
-    // 除了直接进入 403 ，还可以通过下面代码的形式，在每次切换路由时尝试作一次请求获取登录状态，
-    // 该形式不会与 store/auth/init 内的登录方法冲突产生两次请求，
-    // 适用于登录失效后有其他补偿登录形式，如小弹窗、在新标签页面登录后再回来原页面有切换路由的操作。
-    // 如果对于登录后有其他逻辑也可在此处处理，若无需跳转则直接运行 `next()` 即可。
     try {
-      await store.dispatch('auth/getCurrentUser')
+      await store.dispatch('user/getCurrentUser')
     } catch (e) {}
-    if (store.getters['auth/loggedIn']) {
+    if (store.getters['user/loggedIn']) {
       return next()
     } else {
       return next({ name: '401' })

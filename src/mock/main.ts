@@ -2,7 +2,7 @@ const Mock = require('mockjs')
 // get请求
 module.exports = {
   init: function (app) {
-    app.get('/mock/user/userinfo', function (rep, res) {
+    app.get('/mock/user/getCurrentUser', function (rep, res) {
       // 设置要返回的数据
       const ret = Mock.mock({
         user: {

@@ -27,11 +27,6 @@ interface RequestConfig {
   [k: string]: any;
 }
 
-interface HttpRequestInstance {
-  interceptorsRequest: Function;
-  interceptorsResponse: Function;
-}
-
 export default function HttpRequest(requestConfig: RequestConfig = {}) {
   const {
     apiKey = null,
