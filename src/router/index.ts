@@ -20,12 +20,10 @@ let asyncRoutes: Function[] = []
 const mainRoute: RouteConfig = {
   path: '/',
   name: 'Main',
-  redirect: {
-    name: 'Home'
-  },
   meta: {
     noAuthRequired: true
   },
+  redirect: () => '/home',
   component: _import('Main')
 }
 
@@ -86,6 +84,7 @@ function initAsyncRoutes(callback: Function, initRoutes: RouteConfig[] = []) {
       initRoutes = initRoutes.concat(routes)
       if (asyncRoutes.length <= 0) {
         mainRoute.name = 'MainEntry'
+        mainRoute.children = (mainRoute.children || []).concat(initRoutes)
         addVueRoutes([
           mainRoute,
           {

@@ -27,9 +27,9 @@ export default class ErrorPage401 extends Vue {
   protected render() {
     return (
       <ErrorPage title="401" type={401} desc="请先登录">
-        <button slot="actions" class="button" on-click="retry">
+        <el-button slot="actions" class="button" on-click={this.retry}>
           刷新
-        </button>
+        </el-button>
       </ErrorPage>
     )
   }

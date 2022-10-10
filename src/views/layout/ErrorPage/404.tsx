@@ -4,6 +4,7 @@ import ErrorPage from './ErrorPage'
 @Component
 export default class ErrorPage404 extends Vue {
   protected render() {
+    const $router = this.$router
     return (
       <ErrorPage
         {...{
@@ -12,9 +13,9 @@ export default class ErrorPage404 extends Vue {
           }
         }}
       >
-        <button slot="actions" class="button" on-click="$router.go(-1)">
+        <el-button slot="actions" class="button" on-click={() => $router.go(-1)}>
           返回
-        </button>
+        </el-button>
       </ErrorPage>
     )
   }
