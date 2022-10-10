@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
+    "babel-plugin-import": "^1.13.5",
     "core-js": "^2.6.5",
     "element-ui": "^2.15.10",
     "localforage": "^1.7.3",
@@ -46,6 +47,7 @@
     "@vue/eslint-config-standard": "^4.0.0",
     "@vue/eslint-config-typescript": "^4.0.0",
     "babel-eslint": "^10.0.1",
+    "babel-plugin-component": "^1.1.1",
     "chalk": "^5.1.0",
     "commander": "^9.4.1",
     "commitizen": "^4.2.5",

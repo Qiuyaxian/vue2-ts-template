@@ -3,11 +3,11 @@ import { ModuleTree } from 'vuex'
 import { getField, updateField } from 'vuex-map-fields'
 
 interface ModuleWrap {
-  modules: ModuleTree<any>
+  modules: ModuleTree<any>;
 }
 
 // 递归获取各子目录模块命名空间
-function getNamespace (subtree: ModuleWrap, path: string[]): ModuleWrap {
+function getNamespace(subtree: ModuleWrap, path: string[]): ModuleWrap {
   if (path.length === 1) return subtree
 
   const namespace = path.shift() as string

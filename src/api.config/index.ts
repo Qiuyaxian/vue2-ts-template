@@ -1,8 +1,8 @@
 import isPlainObject from 'lodash/isPlainObject'
 
 interface ApiConfig {
-  url: string,
-  [k: string]: any
+  url: string;
+  [k: string]: any;
 }
 
 const confEnv: string | null | undefined = process.env.REACT_APP_ENV

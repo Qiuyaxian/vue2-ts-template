@@ -74,13 +74,10 @@ import {
   Aside,
   Main,
   Footer,
-  Loading,
-  MessageBox,
-  Message,
-  Notification
+  Loading
 } from 'element-ui'
 
-import 'element-ui/lib/theme-chalk/index.css';
+import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(Pagination)
 Vue.use(Dialog)
@@ -145,32 +142,5 @@ Vue.use(Header)
 Vue.use(Aside)
 Vue.use(Main)
 Vue.use(Footer)
-
 Vue.use(Loading.directive)
-
-Vue.prototype.notifyEvents = {};
-Vue.prototype.$notifyEventHandle = function(errors: any){
-  if(this.notifyEvents && this.notifyEvents.closed){
-    this.notifyEvents.close();
-  }
-  let arrays = [],errorText = '';
-  if(typeof(errors) === 'string'){
-    errorText = errors;
-  }else if(errors && errors.length != 0){
-    for(let key in errors){
-      errors[key] && errors[key][0]?arrays.push(errors[key][0]):arrays.push(errors[key]); 
-    }
-    errorText = arrays[0].message;
-  }else{
-    throw new Error(errors+'错误');
-  }
-  this.notifyEvents = this.$notify({
-    type:'error',
-    title: '错误',
-    message: `${errorText}`,
-    offset: 100
-  });
-};
-
 Vue.prototype.$ELEMENT = { size: 'medium' }
-

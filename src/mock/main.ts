@@ -1,5 +1,5 @@
 const Mock = require('mockjs')
-//get请求
+// get请求
 module.exports = {
   init: function (app) {
     app.get('/mock/user/userinfo', function (rep, res) {
@@ -18,7 +18,7 @@ module.exports = {
     })
     /*
     app.post('/mock/update/userinfo', function (rep, res) {
-      
+
     })
     */
   }

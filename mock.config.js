@@ -1,4 +1,3 @@
-/* eslint-disable */
 const path = require('path')
 const fs = require('fs')
 const resolve = (dir) => path.join(__dirname, dir)
@@ -13,7 +12,6 @@ function _initMockHandle(app) {
     if (files && files.length !== 0) {
       for (var i = 0; i < files.length; i++) {
         const fileName = files[i]
-        console.log(fileName, 'fileName')
         if (!mockApiMap[fileName]) {
           if (!/(\w+)\.(js|ts)$/i.test(fileName)) {
             continue
@@ -32,7 +30,6 @@ function _initMockHandle(app) {
       }
     }
   } catch (e) {
-    console.log(e, 'e')
     throw new Error(e.message)
   }
 }
@@ -45,4 +42,3 @@ module.exports = function (app) {
   //   _initMockHandle(app)
   // })
 }
-/* eslint-enable */

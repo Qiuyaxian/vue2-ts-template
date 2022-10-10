@@ -1,4 +1,3 @@
-import { CreateElement } from 'vue'
 import { Component, Vue } from 'vue-property-decorator'
 import ErrorPage from './ErrorPage'
 
@@ -13,7 +12,7 @@ import ErrorPage from './ErrorPage'
         vm.retry()
       }
     })
-  },
+  }
 })
 export default class ErrorPage401 extends Vue {
   async retry() {
@@ -25,9 +24,13 @@ export default class ErrorPage401 extends Vue {
     }
   }
 
-  protected render(h: CreateElement) {
-    return <ErrorPage title="401" type={401} desc='请先登录'>
-      <button slot="actions" class="button" on-click="retry">刷新</button>
-    </ErrorPage>
+  protected render() {
+    return (
+      <ErrorPage title="401" type={401} desc="请先登录">
+        <button slot="actions" class="button" on-click="retry">
+          刷新
+        </button>
+      </ErrorPage>
+    )
   }
 }

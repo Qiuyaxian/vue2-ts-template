@@ -1,4 +1,3 @@
-import { CreateElement } from 'vue'
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import '../style/ErrorPage.less'
 
@@ -20,47 +19,45 @@ export default class ErrorPage extends Vue {
     403: {
       img: require('./assets/403.svg'),
       title: '403',
-      desc: '抱歉，你无权访问该页面',
+      desc: '抱歉，你无权访问该页面'
     },
     404: {
       img: require('./assets/404.svg'),
       title: '404',
-      desc: '抱歉，你访问的页面不存在',
+      desc: '抱歉，你访问的页面不存在'
     },
     500: {
       img: require('./assets/500.svg'),
       title: '500',
-      desc: '抱歉，服务器出错了',
-    },
+      desc: '抱歉，服务器出错了'
+    }
   }
 
   get errorType() {
     return (
-      this.errorTypeConfig[this.type.toString()] ||
-      this.errorTypeConfig['403']
+      this.errorTypeConfig[this.type.toString()] || this.errorTypeConfig['403']
     )
   }
 
-  protected render(h: CreateElement) {
+  protected render() {
     const errorType = this.errorType
     const imgUrl = this.img || errorType.img
     const title = this.title || errorType.title
     const desc = this.desc || errorType.desc
-    
-    return <div class="exception">
-      <div class="img-block">
-        <div
-          style={`backgroundImage:url(${imgUrl})`}
-          class="img-ele"
-        />
-      </div>
-      <div class="content">
-        <h1>{title}</h1>
-        <div class="desc">{ desc }</div>
-        <div class="actions">
-          <slot name="actions" />
+
+    return (
+      <div class="exception">
+        <div class="img-block">
+          <div style={`backgroundImage:url(${imgUrl})`} class="img-ele" />
+        </div>
+        <div class="content">
+          <h1>{title}</h1>
+          <div class="desc">{desc}</div>
+          <div class="actions">
+            <slot name="actions" />
+          </div>
         </div>
       </div>
-    </div>
+    )
   }
 }

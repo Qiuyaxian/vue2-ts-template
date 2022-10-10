@@ -1,3 +1,3 @@
 export default {
-  main: 'http://dev.main.server',
+  main: 'http://dev.main.server'
 }

@@ -1,4 +1,3 @@
-import { CreateElement } from 'vue'
 import { Component, Vue } from 'vue-property-decorator'
 // import HelloWorld from '@/components/HelloWorld'
 // // 导入样式
@@ -8,11 +7,13 @@ import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class App extends Vue {
-  protected render(h: CreateElement) {
+  protected render() {
     // const $route = this.$route
-    // key={$route.fullPath} 
-    return <div id="app">
-      <router-view/>
-    </div>
+    // key={$route.fullPath}
+    return (
+      <div id="app">
+        <router-view />
+      </div>
+    )
   }
 }

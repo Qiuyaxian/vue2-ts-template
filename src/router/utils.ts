@@ -4,7 +4,7 @@ import store from '@/store'
 
 export const _import = (filePath: string) => () => import(`@/views/${filePath}`)
 
-async function checkAuth(to: any, from: any, next: Function) {
+export async function routeCheckAuth(to: any, from: any, next: Function) {
   // 在没有会话接口用于验证登录状态的项目，使用是否获取到登录用户判断是否已登录。
   if (store.getters['auth/loggedIn']) {
     return next()
@@ -31,35 +31,36 @@ async function checkAuth(to: any, from: any, next: Function) {
  * @param  {Array}  routes   [description]
  * @return {[type]} routes   [description]
  */
-export function createRoutes (menuList:RouteConfig[]  = [], routes: RouteConfig[] = []) {
+export function createRoutes(
+  menuList: RouteConfig[] = [],
+  routes: RouteConfig[] = []
+) {
   if (Array.isArray(menuList)) {
     menuList.forEach((menuItem: any) => {
-      if(menuItem.path && menuItem.path.length !== ''){
+      if (menuItem.path && menuItem.path.length !== '') {
         const route: RouteConfig = {
-            path: menuItem.path,
-            component: _import(menuItem.component),
-            //路由元信息
-            meta: menuItem.meta || {},
-            children:[]
-        };
-        if(menuItem.name) route.name = menuItem.name;
-        //是否需要权限
-        if(menuItem.isAuth && !menuItem['beforeEnter']){
-          route.beforeEnter = (to, from, next) => {
-            checkAuth(to, from, next)
-          }
-        } else if(_.has(menuItem, 'beforeEnter') && _.isFunction(menuItem['beforeEnter'])){
-          route['beforeEnter'] = menuItem['beforeEnter'];
+          path: menuItem.path,
+          component: _import(menuItem.component),
+          // 路由元信息
+          meta: menuItem.meta || {},
+          children: []
         }
-        
-        if(_.has(menuItem, 'children') && menuItem.children.length !== 0){
-          route['children'] = createRoutes(menuItem.children);
+        if (menuItem.name) route.name = menuItem.name
+        if (
+          _.has(menuItem, 'beforeEnter') &&
+          _.isFunction(menuItem['beforeEnter'])
+        ) {
+          route['beforeEnter'] = menuItem['beforeEnter']
         }
-        routes.push(route);
+
+        if (_.has(menuItem, 'children') && menuItem.children.length !== 0) {
+          route['children'] = createRoutes(menuItem.children)
+        }
+        routes.push(route)
       } else {
-        throw new Error('path is not null');
+        throw new Error('path is not null')
       }
     })
   }
-  return routes; 
+  return routes
 }

@@ -2,8 +2,8 @@ import { MutationTree, ActionTree } from 'vuex'
 import * as types from '../mutation-types'
 
 interface UserInfoState {
-  name: string,
-  position: string
+  name: string;
+  position: string;
 }
 
 export const state: UserInfoState = {
@@ -13,14 +13,13 @@ export const state: UserInfoState = {
 
 export const mutations: MutationTree<UserInfoState> = {
   [types.SET_CURRENT_USER]: (state: UserInfoState, payload: UserInfoState) => {
-    console.log(payload, 'payload')
     state.name = payload.name
     state.position = payload.position
   }
 }
 
 export const actions: ActionTree<UserInfoState, any> = {
-  updateUserInfo ({ commit }, payload: UserInfoState) {
+  updateUserInfo({ commit }, payload: UserInfoState) {
     commit(types.SET_CURRENT_USER, payload)
   }
 }
