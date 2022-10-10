@@ -1,6 +1,7 @@
 {
   "name": "vue2-ts-template",
   "version": "0.1.0",
+  "license": "ISC",
   "scripts": {
     "serve": "npm run serve:dev",
     "serve:dev": "vue-cli-service serve --open --mode serve-dev",

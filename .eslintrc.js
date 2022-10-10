@@ -17,11 +17,11 @@ module.exports = {
   rules: {
     indent: ['error', 2],
     'space-before-function-paren': 0,
-    // 'no-callback-literal': 0,
+    'no-callback-literal': 0,
     'standard/no-callback-literal': 0,
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    // '@typescript-eslint/indent': 0,
+    '@typescript-eslint/indent': 0,
     '@typescript-eslint/camelcase': 0,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-var-requires': 0,
