@@ -37,8 +37,8 @@
 ## 项目结构
 
 ``` bash
-|-- _templates           // 模版文件 
-|   |-- build.js         // 项目打包入口文件
+|-- _templates           // hygen 模版文件 
+|   |-- components       // 通过 hygen 调用该文件夹下的配置模版快速生成结构代码文件
 |
 |-- .husky               // husky git hook
 |   |-- commit-msg       // git commit 提交钩子
