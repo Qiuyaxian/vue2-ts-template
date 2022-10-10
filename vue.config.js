@@ -108,10 +108,9 @@ module.exports = {
     if (useAnalyzer) {
       config.plugins.push(
         new BundleAnalyzerPlugin({
-          analyzerMode: 'static', // 可选值有server static disabled
           generateStatsFile: false,
           statsOptions: { source: false },
-          openAnalyzer: false
+          openAnalyzer: true
         })
       )
     }
